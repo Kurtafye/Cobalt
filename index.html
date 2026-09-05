@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Penmark | AI essay grader</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header class="site-header">
+		<a class="brand" href="#top" aria-label="Penmark home"><span class="brand-mark">P</span><span>penmark</span></a>
+		<nav class="nav-links" aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#rubric">AP rubric</a></nav>
+		<button class="header-button" type="button" data-scroll="grader">Grade a paper <span aria-hidden="true">&#8594;</span></button>
+	</header>
+
+	<main id="top">
+		<section class="intro" aria-labelledby="page-title">
+			<div class="eyebrow"><span class="eyebrow-line"></span> THE HONEST READ</div>
+			<h1 id="page-title">A second set<br>of <em>eyes.</em></h1>
+			<p class="intro-copy">Penmark reads your essay like a teacher would: grades what is on the page, names what is working, and gives you a clear path to a stronger draft.</p>
+			<div class="intro-note"><span class="note-pin"></span><span>Not a rewrite. A better way to revise.</span></div>
+		</section>
+
+		<section class="grader-wrap" id="grader" aria-labelledby="grader-title">
+			<div class="paper-toolbar"><span id="grader-title">New assessment</span><span class="toolbar-status"><span class="status-dot"></span> Private workspace</span></div>
+			<div class="grader-grid">
+				<div class="editor-panel">
+					<div class="controls-row">
+						<div class="control-group"><label for="essay-type">Essay type</label><select id="essay-type"><option value="poetry">Poetry analysis</option><option value="prose">Prose analysis</option><option value="open">Open literary argument</option><option value="research">Research paper</option><option value="argument">Argumentative essay</option><option value="mla">MLA research essay</option></select></div>
+						<div class="control-group"><label for="paper-format">Paper format</label><select id="paper-format"><option value="mla">MLA</option><option value="apa">APA</option><option value="chicago">Chicago</option><option value="none">No formal format</option></select></div>
+					</div>
+					<div class="controls-row second-row">
+						<div class="control-group"><label for="academic-level">Academic level</label><select id="academic-level"><option>AP English Literature</option><option>Honors / advanced</option><option>College composition</option><option>Undergraduate research</option><option>Graduate seminar</option></select></div>
+						<div class="control-group"><label for="writer-standard">Writer benchmark</label><select id="writer-standard"><option value="high-school">High School</option><option value="college">College English</option><option value="english-major">Major in English</option><option value="harvard">Harvard level</option><option value="phd">PhD</option><option value="greats">The Greats (Shakespeare, Dostoevsky, Tolstoy, Tolkien)</option></select></div>
+					</div>
+					<div class="prompt-field"><label for="prompt">Prompt <span>(optional)</span></label><input id="prompt" type="text" placeholder="What is the prompt asking you to explore?"></div>
+					<div class="essay-field"><label for="essay">Your essay</label><textarea id="essay" placeholder="Paste your essay here. Penmark will assess your writing as-is..."></textarea><div class="essay-footer"><span id="word-count">0 words</span><span>Autosaved just now</span></div></div>
+					<button class="grade-button" id="grade-button" type="button"><span class="button-label">Grade my essay</span><span aria-hidden="true">&#8594;</span></button>
+					<p class="privacy-note"><span aria-hidden="true">&#9670;</span> Your writing is only used to create this assessment.</p>
+				</div>
+				<aside class="rubric-card" id="rubric"><div class="card-kicker" id="rubric-kicker">Scoring framework</div><h2 id="rubric-title">AP Lit rubric</h2><p id="rubric-summary">Built around the official 6-point rubric, with feedback tuned to your essay type.</p><div class="rubric-points"><div><strong>1</strong><span>Thesis</span></div><div><strong>4</strong><span>Evidence &amp;<br>Commentary</span></div><div><strong>1</strong><span>Sophistication</span></div></div><div class="criteria" id="rubric-criteria"><div><b>THESIS</b><span>Defensible interpretation of the work.</span></div><div><b>EVIDENCE</b><span>Specific details, line of reasoning, and technique.</span></div><div><b>SOPHISTICATION</b><span>Complexity, tension, context, or vivid style.</span></div></div><div class="rubric-rule"></div><div class="conversion"><span>Point to grade</span><strong>6 &nbsp; 5 &nbsp; 4 &nbsp; 3 &nbsp; 2 &nbsp; 1</strong><small>20 &nbsp; 18 &nbsp; 16 &nbsp; 14 &nbsp; 12 &nbsp; 10</small></div></aside>
+			</div>
+		</section>
+
+		<section class="results" id="results" aria-live="polite" hidden>
+			<div class="results-header"><div><div class="eyebrow"><span class="eyebrow-line"></span> ASSESSMENT COMPLETE</div><h2>Here is the honest read.</h2></div><button class="outline-button" id="edit-button" type="button">&#8592; Edit essay</button></div>
+			<div class="score-layout"><div class="score-hero"><div class="score-label">Overall score</div><div class="big-score">4<span>/6</span></div><div class="letter-grade">B+ <span>&middot; 88/100</span></div><div class="writer-tier"><span>Writer benchmark</span><strong id="writer-tier-label">College English</strong><small id="writer-tier-copy">Strong college-level writing with room to sharpen argument depth.</small></div><p>A thoughtful reading with a clear direction. Your evidence is promising; now make every sentence prove its point.</p><div class="potential"><span class="potential-arrow">&#8593;</span><div><small>YOUR POTENTIAL</small><strong>5/6 <span>&middot; A-</span></strong><p>With sharper commentary and a more complex final claim.</p></div></div></div><div class="dimensions"><div class="section-heading"><span>Five dimensions</span><span>Current performance</span></div><div class="dimension" data-score="82"><div><strong>Grammar</strong><span>Clean foundation</span></div><div class="bar"><i></i></div><b>82</b></div><div class="dimension" data-score="76"><div><strong>Diction</strong><span>Room to sharpen</span></div><div class="bar"><i></i></div><b>76</b></div><div class="dimension" data-score="88"><div><strong>Tone</strong><span>Confident &amp; measured</span></div><div class="bar"><i></i></div><b>88</b></div><div class="dimension" data-score="71"><div><strong>Structure</strong><span>Build the bridge</span></div><div class="bar"><i></i></div><b>71</b></div><div class="dimension" data-score="84"><div><strong>Clarity</strong><span>Mostly clear</span></div><div class="bar"><i></i></div><b>84</b></div></div></div>
+			<div class="feedback-grid"><div class="teacher-note"><div class="red-pen">TEACHER'S NOTE</div><blockquote>“You have a real argument here, and I can see the poem opening up for you. But you keep stopping just before the most interesting thought. Push past what the image means and ask why the speaker needs it.”</blockquote><div class="signature">— M. Reyes <span>AP English Literature</span></div></div><div class="priorities"><div class="red-pen">START HERE</div><h3>Your top priorities</h3><ol><li><b>01</b><span>Connect each quote to the <em>why</em>, not just the what.</span></li><li><b>02</b><span>Make your thesis claim more specific and debatable.</span></li><li><b>03</b><span>End with the poem's tension still in view.</span></li></ol></div></div>
+			<div class="suggestions-section"><div class="section-heading"><span>Margin notes</span><span id="suggestion-count">5 suggestions</span></div><div class="suggestions"><article class="suggestion"><div class="tag tag-diction">DICTION</div><div class="suggestion-body"><p class="problem">“nature can offer comfort and a different perspective on life”</p><div class="suggestion-fix"><span>&#8594;</span><p>Try naming the actual shift: <strong>“nature becomes a source of interpretive clarity.”</strong></p></div></div><button class="dismiss" type="button" aria-label="Dismiss suggestion">&#215;</button></article><article class="suggestion"><div class="tag tag-evidence">EVIDENCE</div><div class="suggestion-body"><p class="problem">“This is important because it contrasts...”</p><div class="suggestion-fix"><span>&#8594;</span><p>Replace the placeholder with the effect: <strong>“The hush makes the speaker's earlier confusion audible by contrast.”</strong></p></div></div><button class="dismiss" type="button" aria-label="Dismiss suggestion">&#215;</button></article><article class="suggestion"><div class="tag tag-structure">STRUCTURE</div><div class="suggestion-body"><p class="problem">“The speaker uses imagery to show this change.”</p><div class="suggestion-fix"><span>&#8594;</span><p>Let this claim do more work: <strong>“The poem's light imagery charts a movement from observation to recognition.”</strong></p></div></div><button class="dismiss" type="button" aria-label="Dismiss suggestion">&#215;</button></article><article class="suggestion"><div class="tag tag-sophistication">SOPHISTICATION</div><div class="suggestion-body"><p class="problem">“has found some kind of clarity”</p><div class="suggestion-fix"><span>&#8594;</span><p>Keep the uncertainty, but complicate it: <strong>“finds clarity without resolving the need that made it necessary.”</strong></p></div></div><button class="dismiss" type="button" aria-label="Dismiss suggestion">&#215;</button></article><article class="suggestion"><div class="tag tag-grammar">GRAMMAR</div><div class="suggestion-body"><p class="problem">“nature is just a background, but later it becomes...”</p><div class="suggestion-fix"><span>&#8594;</span><p>Use a stronger pivot and avoid the vague “something”: <strong>“nature shifts from backdrop to interlocutor.”</strong></p></div></div><button class="dismiss" type="button" aria-label="Dismiss suggestion">&#215;</button></article></div></div>
+		</section>
+	</main>
+	<footer id="how-it-works"><span>penmark / 2026</span><span>Grade honestly. Revise deliberately.</span></footer>
+	<script>
+		const essay = document.querySelector('#essay');
+		const count = document.querySelector('#word-count');
+		const results = document.querySelector('#results');
+		const grader = document.querySelector('#grader');
+		const essayTypeSelect = document.querySelector('#essay-type');
+		const paperFormatSelect = document.querySelector('#paper-format');
+		const academicLevelSelect = document.querySelector('#academic-level');
+		const writerStandardSelect = document.querySelector('#writer-standard');
+		const rubricTitle = document.querySelector('#rubric-title');
+		const rubricSummary = document.querySelector('#rubric-summary');
+		const rubricCriteria = document.querySelector('#rubric-criteria');
+		const rubricKicker = document.querySelector('#rubric-kicker');
+		const writerTierLabel = document.querySelector('#writer-tier-label');
+		const writerTierCopy = document.querySelector('#writer-tier-copy');
+
+		const writerBenchmarks = {
+			highSchool: { label: 'High School', copy: 'You write with a clear, workable command of structure and clarity.' },
+			college: { label: 'College English', copy: 'You are operating at a solid college-level standard with room to deepen analysis.' },
+			englishMajor: { label: 'Major in English', copy: 'You are reading and writing with strong literary awareness and interpretive range.' },
+			harvard: { label: 'Harvard level', copy: 'You demonstrate polished argumentation and a sophisticated analytic voice.' },
+			phd: { label: 'PhD', copy: 'You are pushing into doctoral-level complexity, nuance, and conceptual control.' },
+			greats: { label: 'The Greats', copy: 'You write with the force, balance, and resonance of the literary masters.' }
+		};
+
+		function resolveWriterBenchmark(score) {
+			if (score >= 97) return writerBenchmarks.greats;
+			if (score >= 90) return writerBenchmarks.harvard;
+			if (score >= 80) return writerBenchmarks.englishMajor;
+			if (score >= 70) return writerBenchmarks.college;
+			if (score >= 60) return writerBenchmarks.highSchool;
+			return { label: 'Developing', copy: 'Your writing shows promise, but the paper still needs a stronger claim and deeper analysis.' };
+		}
+
+		const typeProfiles = {
+			poetry: {
+				kicker: 'Scoring framework',
+				title: 'AP Lit rubric',
+				summary: 'Built around the official AP English Literature rubric, with poetry-specific focus on thesis, evidence, and sophistication.',
+				criteria: [
+					['THESIS', 'Defensible interpretation of the work.'],
+					['EVIDENCE', 'Specific details, line of reasoning, and technique.'],
+					['SOPHISTICATION', 'Complexity, tension, context, or vivid style.']
+				],
+				scores: { grammar: 84, diction: 77, tone: 89, structure: 75, clarity: 82 },
+				note: 'You have a real argument here, but the analysis needs to go one step further and explain why the poem demands the interpretation you are making.'
+			},
+			prose: {
+				kicker: 'Literary analysis',
+				title: 'Prose analysis rubric',
+				summary: 'Assesses argument quality, specific textual evidence, and the way commentary develops a claim across a passage.',
+				criteria: [
+					['THESIS', 'A defensible interpretation of the passage.'],
+					['EVIDENCE', 'Strong selection of words, images, and narrative detail.'],
+					['COMMENTARY', 'Clear explanation of how the evidence proves the point.']
+				],
+				scores: { grammar: 86, diction: 80, tone: 87, structure: 78, clarity: 84 },
+				note: 'The passage is being read intelligently, but several claims need stronger explanation so the reader sees the relationship between evidence and meaning.'
+			},
+			open: {
+				kicker: 'Open literary argument',
+				title: 'Open literary argument rubric',
+				summary: 'Focuses on thesis depth, multi-claim reasoning, and a sustained interpretation of the text as a whole.',
+				criteria: [
+					['THESIS', 'A clear and arguable interpretation of the selected work.'],
+					['ARGUMENT', 'Multiple supporting claims that build a line of reasoning.'],
+					['SYNTHESIS', 'A complex view that accounts for tension or contradiction.']
+				],
+				scores: { grammar: 82, diction: 81, tone: 85, structure: 77, clarity: 83 },
+				note: 'Your reading is promising, yet the essay needs a stronger overall line of reasoning if it is going to sound like a mature literary argument rather than a set of observations.'
+			},
+			research: {
+				kicker: 'College writing',
+				title: 'Research paper rubric',
+				summary: 'Professor-style grading for a college research paper: thesis, source integration, argumentation, and citation quality all matter.',
+				criteria: [
+					['THESIS', 'A precise, arguable claim anchored in your question.'],
+					['EVIDENCE', 'Relevant scholarship integrated with accurate attribution.'],
+					['ANALYSIS', 'Your interpretation, not just summary, drives the paper.']
+				],
+				scores: { grammar: 87, diction: 83, tone: 81, structure: 79, clarity: 85 },
+				note: 'This paper has a solid research base, but right now it reads more like a summary of sources than an argument. Your next revision should make your own claim more visible throughout.'
+			},
+			argument: {
+				kicker: 'Argumentative writing',
+				title: 'Argumentative essay rubric',
+				summary: 'Evaluates claim clarity, evidence quality, rebuttal strength, and how effectively the paper persuades an audience.',
+				criteria: [
+					['CLAIM', 'A debatable thesis with a clear position.'],
+					['EVIDENCE', 'Specific support, credibility, and source quality.'],
+					['COUNTERARGUMENT', 'Refutation and rhetorical sophistication.']
+				],
+				scores: { grammar: 88, diction: 84, tone: 82, structure: 80, clarity: 86 },
+				note: 'Your case is credible and your writing is controlled, but a stronger acknowledgement of opposing views would make the argument feel more mature and persuasive.'
+			},
+			mla: {
+				kicker: 'MLA format',
+				title: 'MLA research essay rubric',
+				summary: 'Professor grading for MLA-formatted research writing: argument, source analysis, citation mechanics, and formal polish all count.',
+				criteria: [
+					['THESIS', 'A clear claim supported by a focused research question.'],
+					['SOURCE USE', 'Smooth integration of quotations and paraphrases.'],
+					['MLA', 'Heading, page formatting, works cited, and attribution accuracy.']
+				],
+				scores: { grammar: 89, diction: 82, tone: 80, structure: 81, clarity: 87 },
+				note: 'The paper is structurally clean and the research is present, but the argument still needs a sharper scholarly voice. MLA mechanics are solid; the next step is making the analysis more consistently interpretive.'
+			}
+		};
+
+		function updateCount() {
+			count.textContent = `${essay.value.trim() ? essay.value.trim().split(/\s+/).length : 0} words`;
+		}
+
+		function updateRubric() {
+			const profile = typeProfiles[essayTypeSelect.value] || typeProfiles.poetry;
+			rubricKicker.textContent = profile.kicker;
+			rubricTitle.textContent = profile.title;
+			rubricSummary.textContent = profile.summary;
+			rubricCriteria.innerHTML = profile.criteria.map(([label, text]) => `<div><b>${label}</b><span>${text}</span></div>`).join('');
+		}
+
+		essay.addEventListener('input', updateCount);
+		essayTypeSelect.addEventListener('change', updateRubric);
+		paperFormatSelect.addEventListener('change', updateRubric);
+		updateCount();
+		updateRubric();
+
+		document.querySelector('#grade-button').addEventListener('click', () => {
+			const wordCount = essay.value.trim().split(/\s+/).filter(Boolean).length;
+			if (wordCount < 20) {
+				essay.focus();
+				essay.classList.add('invalid');
+				count.textContent = 'Add a little more writing to grade';
+				setTimeout(() => essay.classList.remove('invalid'), 1200);
+				return;
+			}
+
+			const typeKey = essayTypeSelect.value;
+			const formatLabel = paperFormatSelect.value.toUpperCase();
+			const levelLabel = academicLevelSelect.value;
+			const profile = typeProfiles[typeKey] || typeProfiles.poetry;
+			const scores = profile.scores;
+			const rankedScores = Object.values(scores);
+			const average = Math.round(rankedScores.reduce((sum, score) => sum + score, 0) / rankedScores.length);
+			const gradeMap = [
+				{ max: 97, label: 'A+' },
+				{ max: 93, label: 'A' },
+				{ max: 90, label: 'A-' },
+				{ max: 87, label: 'B+' },
+				{ max: 83, label: 'B' },
+				{ max: 80, label: 'B-' },
+				{ max: 77, label: 'C+' },
+				{ max: 73, label: 'C' },
+				{ max: 70, label: 'C-' },
+				{ max: 67, label: 'D+' },
+				{ max: 63, label: 'D' },
+				{ max: 60, label: 'D-' },
+				{ max: Infinity, label: 'F' }
+			];
+			const letterGrade = gradeMap.find(entry => average <= entry.max).label;
+			const potentialScore = Math.min(99, average + 8);
+			const potentialGrade = gradeMap.find(entry => potentialScore <= entry.max).label;
+			const benchmark = resolveWriterBenchmark(average);
+			const benchmarkKey = writerStandardSelect.value.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+			const selectedBenchmark = writerBenchmarks[benchmarkKey] || writerBenchmarks.college;
+
+			document.querySelector('.big-score').innerHTML = `${Math.round(average / 16)}<span>/6</span>`;
+			document.querySelector('.letter-grade').innerHTML = `${letterGrade} <span>· ${average}/100</span>`;
+			document.querySelector('#writer-tier-label').textContent = benchmark.label;
+			document.querySelector('#writer-tier-copy').textContent = `${benchmark.copy} Compared with ${selectedBenchmark.label}, this work reads as ${average >= 70 ? 'above' : 'below'} the ${selectedBenchmark.label.toLowerCase()} benchmark.`;
+			document.querySelector('.score-hero p').textContent = `${profile.note} ${levelLabel} work submitted in ${formatLabel} format is being judged as a ${essayTypeSelect.options[essayTypeSelect.selectedIndex].text.toLowerCase()}.`;
+			document.querySelector('.potential strong').innerHTML = `${Math.round(potentialScore / 16)}<span> · ${potentialGrade}</span>`;
+			document.querySelector('.potential p').textContent = `With a sharper thesis and more source-driven analysis, this draft could land around ${potentialGrade}.`;
+			document.querySelector('.signature span').textContent = `${levelLabel} · ${formatLabel} format`;
+			document.querySelector('.teacher-note blockquote').textContent = `“${profile.note}”`;
+
+			document.querySelectorAll('.dimension').forEach((item) => {
+				const score = item.dataset.score;
+				const bar = item.querySelector('i');
+				if (bar) bar.style.width = `${score}%`;
+			});
+
+			const dimensions = [
+				['Grammar', scores.grammar],
+				['Diction', scores.diction],
+				['Tone', scores.tone],
+				['Structure', scores.structure],
+				['Clarity', scores.clarity]
+			];
+			dimensions.forEach(([label, value], index) => {
+				const item = document.querySelectorAll('.dimension')[index];
+				if (!item) return;
+				item.dataset.score = value;
+				item.querySelector('strong').textContent = label;
+				item.querySelector('b').textContent = value;
+				const bar = item.querySelector('.bar i');
+				if (bar) bar.style.width = `${value}%`;
+			});
+
+			results.hidden = false;
+			results.classList.add('is-visible');
+			results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			document.querySelectorAll('.dimension').forEach((item, index) => setTimeout(() => item.classList.add('animate'), index * 90));
+		});
+
+		document.querySelector('#edit-button').addEventListener('click', () => { results.hidden = true; grader.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+		document.querySelectorAll('.dismiss').forEach(button => button.addEventListener('click', () => { button.closest('.suggestion').remove(); document.querySelector('#suggestion-count').textContent = `${document.querySelectorAll('.suggestion').length} suggestions`; }));
+		document.querySelectorAll('[data-scroll]').forEach(button => button.addEventListener('click', () => document.querySelector(`#${button.dataset.scroll}`).scrollIntoView({ behavior: 'smooth' })));
+	</script>
+</body>
+</html>
